@@ -16,5 +16,5 @@ if($_SESSION["user_id"] != null){
 }
 
 //close session
-session_destroy();
+// session_destroy();
   

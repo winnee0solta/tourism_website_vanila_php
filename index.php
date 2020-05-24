@@ -102,24 +102,56 @@
 		<div class="container">
 			<div class="row">
 
-			<?php
-				include 'model/connection.php'; 
+				<?php
+				include 'model/connection.php';
 				$sql = "SELECT * FROM gallery";
 				$result = $conn->query($sql);
-				while ($row = mysqli_fetch_assoc($result)) { 
+				while ($row = mysqli_fetch_assoc($result)) {
+					//image
+					$sql2 = "SELECT * FROM photos WHERE gallery_id='" . $row['id'] . "'  LIMIT 1";
+					$result2 = $conn->query($sql2);
+					$photo = mysqli_fetch_assoc($result2);
+
 					echo '
 					<div class="col-md-3">
-						<div class="gallery-box">
-							<img src="./images/gallery/' . $row['image'] . '" style="height:200px;">
+						<div class="gallery-box"  data-toggle="modal" data-target="#galleryModal-' . $row['id'] . '"> 
 							<a href="#">
+							<img src="./images/gallery/' . $photo['image'] . '" style="height:200px;">
 								<h4>' . $row['name'] . '</h4>
 							</a>
 						</div>
 					</div> 
 				
 					';
+					$image_lists = '';
+					$sql3 = "SELECT * FROM photos WHERE gallery_id='" . $row['id'] . "' ";
+					$result3 = $conn->query($sql3);
+					while ($row2 = mysqli_fetch_assoc($result3)) {
+						$image_lists = $image_lists . '<img src="./images/gallery/' . $row2['image'] . '"  class="img-fluid mt-2" style="height:200px;">';
+					}
+
+					echo '
+					<div class="modal fade" id="galleryModal-' . $row['id'] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">' . $row['name'] . '</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+									' . $image_lists . '
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+						</div>
+						</div>
+					</div>
+					</div>
+					';
 				}
-				?> 
+				?>
 
 			</div>
 		</div>
@@ -188,11 +220,11 @@
 										<div class="form-group">
 											<label>Contact No</label>
 											<input name="phone" type="text" class="form-control" placeholder="Enter Contact No" required>
-										</div> 
+										</div>
 										<div class="form-group">
 											<label>Email</label>
 											<input name="email" type="email" class="form-control" placeholder="Enter Email" required>
-										</div> 
+										</div>
 										<div class="form-group">
 											<label>Query </label>
 											<textarea name="querie" class="form-control"></textarea>

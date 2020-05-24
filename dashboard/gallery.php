@@ -29,27 +29,23 @@
         <!-- modal  -->
         <div class="mt-2 ml-3">
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#newgalleryModal">
-                Add New Photo
+                Add New Gallery
             </button>
         </div>
         <div class="modal fade" id="newgalleryModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"> Add New Gallery Photo</h5>
+                        <h5 class="modal-title"> Add New Gallery</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="card card-body">
-                            <form action="../model/addgallery.php" method="post" enctype="multipart/form-data">
+                            <form action="../model/addgallery.php" method="post">
                                 <div class="form-group">
-                                    <label>Image</label>
-                                    <input name="image" type="file" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Package Name</label>
+                                    <label>Gallery Name</label>
                                     <input name="name" type="text" class="form-control" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -65,28 +61,27 @@
         <!--ENDS modal  -->
 
 
-        <div class="row mt-5">
+        <div class="row mt-5 justify-content-center">
 
-
-        <?php
+            <div class="col-12 col-md-4 mt-3">
+                <ul class="list-group">
+                    <?php
                     include '../model/connection.php';
                     $sql = "SELECT * FROM gallery";
                     $result = $conn->query($sql);
                     while ($row = mysqli_fetch_assoc($result)) {
-                        echo ' 
-                        <div class="col-12 col-md-4 mt-3">
-                        <div class="card card-body">
-                            <div class="title h5 font-weight-bold"> ' . $row['name'] . '</div>
-                            <img src="../images/gallery/' . $row['image'] . '" class="img-fluid" style="height:250px;">
-                            <a href="../model/removegallery.php?id=' . $row['id'] . '" class="btn btn-danger mt-2"> REMOVE</a>
-                        </div>
-                    </div> 
-                        ';
+                        echo '<li class="list-group-item">' . $row['name'] . '
+                        <a href="./viewgallery.php?id=' . $row['id'] . '" class="ml-5 btn btn-sm btn-dark mt-2"> VIEW</a>
+                        <a href="../model/removegallery.php?id=' . $row['id'] . '" class="btn btn-sm btn-danger mt-2"> REMOVE</a>
+                        </li> ';
+                        //  <img src="../images/gallery/' . $row['image'] . '" class="img-fluid" style="height:250px;">
                     }
-                    ?> 
+                    ?>
+                </ul>
+            </div>
         </div>
 
-        
+
         <!--ENDS content -->
 
     </div>

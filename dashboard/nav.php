@@ -1,3 +1,5 @@
+<?php include "../model/checkauth.php"; ?>
+
 <nav class="navbar navbar-expand-lg navbar-dark  bg-dark shadow-sm">
         <a class="navbar-brand" href="./index.php"> 
             Dashboard

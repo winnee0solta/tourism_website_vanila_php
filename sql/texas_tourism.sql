@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2020 at 07:31 PM
+-- Generation Time: May 24, 2020 at 12:40 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -29,20 +29,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `gallery` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `gallery`
 --
 
-INSERT INTO `gallery` (`id`, `name`, `image`) VALUES
-(1, 'Annapurna', 'annapurna.jpg'),
-(3, 'Bhaktapur', 'bhaktapur.jpg'),
-(4, 'Chitwan', 'chitwan.jpg'),
-(5, 'Kathmandu', 'ktm1.jpg'),
-(6, 'Lumbini', 'lumbini.jpg');
+INSERT INTO `gallery` (`id`, `name`) VALUES
+(1, 'Annapurna'),
+(3, 'Bhaktapur'),
+(4, 'Chitwan'),
+(5, 'Kathmandu'),
+(6, 'Lumbini');
 
 -- --------------------------------------------------------
 
@@ -96,8 +95,32 @@ CREATE TABLE `packages` (
 --
 
 INSERT INTO `packages` (`id`, `name`, `location`, `days`, `nights`, `image`, `price`, `desc`, `img_1`, `img_2`, `img_3`, `img_4`, `img_5`, `img_6`) VALUES
-(1, 'Package 1', 'kathmandu', 5, 5, 'annapurna.jpg', 5000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.', 'banner1.jpg', 'bhaktapur.png', 'chitwan.jpg', 'cover.jpg', 'langtang.jpg', 'lumbini.jpg'),
+(1, 'Package 1', 'kathmandu', 5, 5, 'ktm1.jpg', 6000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.', 'ktm2.jpg', 'ktm3.jpg', 'ktm4.jpg', 'ktm5.jpg', 'ktm6.jpg', 'ktm7.jpg'),
 (2, 'Package 2', 'Bhaktapur', 5, 4, 'bhaktapur.png', 10000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nesciunt magnam cumque quisquam voluptate? Labore numquam atque dolorem suscipit asperiores debitis accusantium quis ad, voluptatem consequatur voluptates, similique inventore dignissimos.', 'annapurna.jpg', 'banner1.jpg', 'bhaktapur.png', 'chitwan.jpg', 'cover.jpg', 'langtang.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `photos`
+--
+
+CREATE TABLE `photos` (
+  `id` int(11) NOT NULL,
+  `gallery_id` bigint(20) NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `photos`
+--
+
+INSERT INTO `photos` (`id`, `gallery_id`, `image`) VALUES
+(1, 1, 'ktm1.jpg'),
+(6, 3, 'ktm8.jpg'),
+(7, 3, 'ktm3.jpg'),
+(8, 4, 'chitwan.jpg'),
+(9, 5, 'chitwan3.jpg'),
+(10, 6, 'lumbini.jpg');
 
 -- --------------------------------------------------------
 
@@ -186,6 +209,12 @@ ALTER TABLE `packages`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `photos`
+--
+ALTER TABLE `photos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `queries`
 --
 ALTER TABLE `queries`
@@ -211,7 +240,7 @@ ALTER TABLE `vehiclebookings`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `packagebookings`
@@ -224,6 +253,12 @@ ALTER TABLE `packagebookings`
 --
 ALTER TABLE `packages`
   MODIFY `id` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `photos`
+--
+ALTER TABLE `photos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `queries`

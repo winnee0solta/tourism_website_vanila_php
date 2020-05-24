@@ -18,7 +18,7 @@ if ($result->num_rows > 0){
     $_SESSION["user_id"] = $row['id'];
     $_SESSION["username"] = $row['username']; 
     //close session
-    session_destroy();
+    // session_destroy();
 
     //redirect  
     header('Location: ' . '../dashboard/index.php');
